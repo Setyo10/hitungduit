@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HitungDuit - Kalkulator Tabungan & Cicilan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="hero">
+    <h1>HitungDuit</h1>
+    <p>Mau cicil apa? Pilih barangnya, atur bunga dan tenor, lihat cicilan per bulan.</p>
+  </header>
+
+  <main>
+    <section aria-labelledby="judul-pilih">
+      <h2 id="judul-pilih">1. Pilih barang yang mau dicicil</h2>
+      <div class="items" id="items" role="radiogroup" aria-label="Pilihan barang"></div>
+    </section>
+
+    <section id="kalkulator" class="calc" hidden aria-labelledby="judul-hitung">
+      <h2 id="judul-hitung">2. Atur cicilan untuk <span id="namaBarang"></span></h2>
+
+      <form id="form" novalidate>
+        <label>Harga barang (Rp)
+          <input type="number" id="harga" min="0" step="100000" required>
+        </label>
+        <label>Uang muka / DP (%)
+          <input type="number" id="dp" min="0" max="90" step="1" value="20" required>
+        </label>
+        <label>Bunga per tahun (%)
+          <input type="number" id="bunga" min="0" max="100" step="0.1" value="8" required>
+        </label>
+        <label>Tenor (bulan)
+          <select id="tenor">
+            <option value="6">6 bulan</option>
+            <option value="12" selected>12 bulan</option>
+            <option value="24">24 bulan</option>
+            <option value="36">36 bulan</option>
+            <option value="48">48 bulan</option>
+            <option value="60">60 bulan</option>
+          </select>
+        </label>
+        <p id="error" class="error" role="alert"></p>
+        <div class="actions">
+          <button type="submit" class="btn">Hitung cicilan</button>
+          <button type="button" id="reset" class="btn ghost">Pilih barang lain</button>
+        </div>
+      </form>
+
+      <div id="hasil" class="hasil" hidden aria-live="polite">
+        <h3>Hasil perhitungan</h3>
+        <p class="besar"><span id="cicilan"></span><small> / bulan</small></p>
+        <dl>
+          <div><dt>Harga barang</dt><dd id="rHarga"></dd></div>
+          <div><dt>Uang muka</dt><dd id="rDp"></dd></div>
+          <div><dt>Pokok pinjaman</dt><dd id="rPokok"></dd></div>
+          <div><dt>Total bunga</dt><dd id="rBunga"></dd></div>
+          <div><dt>Total bayar (DP + cicilan)</dt><dd id="rTotal"></dd></div>
+        </dl>
+        <p class="catatan">Perhitungan memakai bunga flat: bunga dihitung dari pokok pinjaman awal, dikali lama tenor dalam tahun.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>HitungDuit &mdash; tugas web HTML, CSS, dan JavaScript</footer>
+  <script src="js/script.js"></script>
+</body>
+</html>
